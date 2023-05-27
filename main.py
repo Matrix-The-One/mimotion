@@ -89,9 +89,9 @@ def getBeijinTime():
             user_mi = account['account']
             # 登录密码
             passwd_mi = account['password']
-            if (account == '1049040894@qq.com' and hour < 23):
+            if (account == '1049040894@qq.com' and int(hour) < 23):
               continue
-            if (account != '1049040894@qq.com' and hour >= 23):
+            if (account != '1049040894@qq.com' and int(hour) >= 23):
               continue
             user_list = user_mi.split('#')
             passwd_list = passwd_mi.split('#')
