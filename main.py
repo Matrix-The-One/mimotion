@@ -34,7 +34,7 @@ def getWeather():
         global K, type
         url = 'http://wthrcdn.etouch.cn/weather_mini?city=' + area
         hea = {'User-Agent': 'Mozilla/5.0'}
-        r = requests.get(url=url, headers=hea)
+        r = requests.get(url=url, headers=hea, verify = False)
         if r.status_code == 200:
             result = r.text
             res = json.loads(result)
@@ -68,7 +68,7 @@ def getBeijinTime():
     url = r'https://apps.game.qq.com/CommArticle/app/reg/gdate.php'
     if open_get_weather == "True":
         getWeather()
-    r = requests.get(url=url, headers=hea)
+    r = requests.get(url=url, headers=hea, verify = False)
     if r.status_code == 200:
         result = r.text
         pattern = re.compile('\\d{4}-\\d{2}-\\d{2} (\\d{2}):\\d{2}:\\d{2}')
@@ -134,7 +134,7 @@ def login(user, password):
         "redirect_uri": "https://s3-us-west-2.amazonaws.com/hm-registration/successsignin.html",
         "token": "access"
     }
-    r1 = requests.post(url1, data=data1, headers=headers, allow_redirects=False)
+    r1 = requests.post(url1, data=data1, headers=headers, allow_redirects=False, verify = False)
     location = r1.headers["Location"]
     try:
         code = get_code(location)
@@ -171,7 +171,7 @@ def login(user, password):
             "source": "com.xiaomi.hm.health",
             "third_name": "email",
         }
-    r2 = requests.post(url2, data=data2, headers=headers).json()
+    r2 = requests.post(url2, data=data2, headers=headers, verify = False).json()
     login_token = r2["token_info"]["login_token"]
     # print("login_token获取成功！")
     # print(login_token)
@@ -217,7 +217,7 @@ def main(_user, _passwd, min_1, max_1):
 
     data = f'userid={userid}&last_sync_data_time=1597306380&device_type=0&last_deviceid=DA932FFFFE8816E7&data_json={data_json}'
 
-    response = requests.post(url, data=data, headers=head).json()
+    response = requests.post(url, data=data, headers=head, verify = False).json()
     # print(response)
     result = f"[{now}]\n账号：{user[:3]}****{user[7:]}\n修改步数（{step}）[" + response['message'] + "]\n"
     print(result)
@@ -227,7 +227,7 @@ def main(_user, _passwd, min_1, max_1):
 # 获取时间戳
 def get_time():
     url = 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp'
-    response = requests.get(url, headers=headers).json()
+    response = requests.get(url, headers=headers, verify = False).json()
     t = response['data']['t']
     return t
 
@@ -235,7 +235,7 @@ def get_time():
 # 获取app_token
 def get_app_token(login_token):
     url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
-    response = requests.get(url, headers=headers).json()
+    response = requests.get(url, headers=headers, verify = False).json()
     app_token = response['token_info']['app_token']
     # print("app_token获取成功！")
     # print(app_token)
