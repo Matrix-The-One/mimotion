@@ -86,12 +86,13 @@ def getBeijinTime():
     if min_1 != 0 and max_1 != 0:
         accounts = json.loads(sys.argv[1])
         for account in accounts:
+            quietly = account["quietly"]
             user_mi = account["account"]
             # 登录密码
             passwd_mi = account["password"]
-            if (user_mi == "1049040894@qq.com" and int(hour) < 23):
+            if (quietly == True and int(hour) < 23):
               continue
-            if (user_mi != "1049040894@qq.com" and int(hour) >= 23):
+            if (quietly == False and int(hour) >= 23):
               continue
             user_list = user_mi.split('#')
             passwd_list = passwd_mi.split('#')
