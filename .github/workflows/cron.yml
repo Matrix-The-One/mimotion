@@ -1,6 +1,6 @@
 name: Random Cron
 on:
-  workflow_run:
+#   workflow_run:
 #     workflows: ["刷步数"]
 #     types:
 #       - completed
