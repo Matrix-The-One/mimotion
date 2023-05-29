@@ -1,9 +1,13 @@
 name: Random Cron
 on:
   workflow_run:
-    workflows: ["刷步数"]
-    types:
-      - completed
+#     workflows: ["刷步数"]
+#     types:
+#       - completed
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
