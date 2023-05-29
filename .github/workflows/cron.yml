@@ -1,18 +1,15 @@
 name: Random Cron
 on:
-#   workflow_run:
-#     workflows: ["刷步数"]
-#     types:
-#       - completed
-  schedule:
-    - cron: '0 23 * * *'
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["刷步数"]
+    types:
+      - completed
 
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
     timeout-minutes: 3
-#     if: github.event.workflow_run.conclusion == 'success'
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v2
         with:
