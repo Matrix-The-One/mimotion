@@ -30,6 +30,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const octokit = github.getOctokit(core.getInput('repo-token'));
             await octokit.request('POST /repos/{context.repo.owner}/{context.repo.repo}/actions/runs/{context.payload.workflow_run.id}/rerun', {
               owner: context.repo.owner,
               repo: context.payload.workflow_run.id,
