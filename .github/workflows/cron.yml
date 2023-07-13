@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: 16
-      - run: npm install @octokit/rest -g
+      - run: npm install @octokit/rest
       - name: Retry main workflow
         uses: actions/github-script@v4
         with:
