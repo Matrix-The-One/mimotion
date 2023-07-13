@@ -29,10 +29,10 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with: 
-          node-version: 16
+          node-version: 18
       - run: npm install @octokit/rest
       - name: Retry main workflow
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.PAT }}
           script: |
