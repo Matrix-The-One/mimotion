@@ -26,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+      - run: npm install @octokit/rest -g
       - name: Retry main workflow
         uses: actions/github-script@v4
         with:
